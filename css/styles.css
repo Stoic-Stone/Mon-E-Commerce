@@ -27,8 +27,9 @@ body {
     }
 
     header {
+        display: contents;
         position: fixed;
-        z-index: 10;
+        z-index: 1000;
         width: min(1200px, 90vw);
         height: 70px;
         left: 50%;
@@ -57,6 +58,8 @@ body {
         height: 100vh;
         overflow: hidden;
         position: relative;
+        overflow-y: auto;
+
 
         & .product-list {
             width: min(1200px, 90vw);
@@ -102,7 +105,7 @@ body {
                     flex-direction: column;
                     justify-content: center;
                     align-items: end;
-                    gap: 20px;
+                    gap: 4em;
 
                     & .category {
                         font-weight: 500;
@@ -148,6 +151,7 @@ body {
                         background-color: transparent;
                         border: none;
                         position: relative;
+                        cursor: pointer;
 
                         &:nth-child(1) {
                             background-image: linear-gradient(to right, #81baa0, #46a39c);
@@ -270,6 +274,9 @@ body {
     .carousel {
         --calculation: 1;
 
+
+
+
         /* 1 or -1 */
         & .product-list {
             & .item {
@@ -340,27 +347,7 @@ body {
     }
 }
 
-@media screen and (max-width: 1023px) and (min-width: 768px) {
-    :root {
-        --w-column: 100px;
-    }
 
-    body {
-        & .carousel {
-            height: 60vh;
-
-            & .list {
-                & .item {
-                    & .content {
-                        & h2 {
-                            font-size: 5em;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 @media screen and (max-width: 767px) {
     :root {
@@ -370,6 +357,8 @@ body {
     body {
         & .carousel {
             height: 100vh;
+
+
 
             & .list {
                 & .item {
@@ -402,11 +391,25 @@ body {
     }
 }
 
+
+
 a {
     text-decoration: none;
     font-family: 'League Gothic';
     text-transform: uppercase;
     color: #fff;
+} 
+
+header nav ul li a {
+    color: #fff; 
+    transition: color 0.3s, background-color 0.3s; 
+    padding: 10px;
+}
+
+header nav ul li a:hover {
+    color:#46a39c; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px; 
 }
 
 .product-container {
@@ -416,6 +419,7 @@ a {
     flex-wrap: wrap;
     padding: 20px;
     height: 75%;
+    margin-top: 7em;
 }
 
 .product-item {
@@ -467,13 +471,15 @@ h1 {
     margin-bottom: 20px;
     font-size: 2em;
 }
+.more button:hover{
+    transform: scale(1.1);
+}
 
 #cart-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     list-style: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     padding: 0;
     margin: 0;
 }
@@ -486,6 +492,7 @@ h1 {
     padding: 15px;
     margin: 10px 0;
     transition: background-color 0.3s;
+    width: 100%;
 }
 
 .cart-item:hover {
@@ -558,31 +565,35 @@ h1 {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    background-color: var(--item-background);
     border-radius: 10px;
+    display: grid;
+    gap: 50px;
     padding: 2em;
-    max-width: 600px;
-    min-width: 25%;
     margin: 100px auto;
-    text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 20em;
 }
 
-#product-details h2 {
+#product-details h2,
+p {
     font-family: 'League Gothic', sans-serif;
-    font-size: 1.5em;
+    font-size: 3em;
     color: var(--highlight-color);
-    margin-bottom: 20px;
-    margin: 2em;
+    margin: 1em;
+    text-align: center;
+}
+
+.product-description {
+    margin-top: -2.5em;
+    text-align: left;
+    color: white;
+    font-size: 2em;
 }
 
 #product-details img {
-    border-radius: 10px;
-    margin-bottom: 20px;
+    width: 100%;
+    margin: -10em 0em;
 }
-
-
 
 
 .add-to-cart:hover {
@@ -595,15 +606,15 @@ h1 {
     padding: 0 10px 10px;
 }
 
-#product-details .product-description{
+#product-details .product-description {
     display: grid;
 }
 
-#product-details .product-description button{
+#product-details .product-description button {
     padding: 0;
 }
 
-#product-details .product-presentation{
+#product-details .product-presentation {
     display: grid;
 }
 
@@ -611,6 +622,44 @@ h1 {
 @media screen and (max-width: 767px) {
     #product-details {
         display: grid;
+        margin-top: 30em;
     }
+
+    .description {
+        display: none;
+    }
+
+    .more {
+        margin-top: 11em;
+    }
+
+    .number {
+        margin-left: 1.2em;
+    }
+
+    .product-item {
+        width: 100%;
+    }
+
+    .product-description {
+        font-size: 2em;
+        width: 11em;
+        margin: 0;
+    }
+
+    .cart-item h3 {
+        font-size: 0.5em;
+    }
+}
+
+.cart-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 }
